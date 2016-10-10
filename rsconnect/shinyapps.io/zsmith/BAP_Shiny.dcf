@@ -1,0 +1,9 @@
+name: BAP_Shiny
+account: zsmith
+server: shinyapps.io
+appId: 130826
+bundleId: 582517
+url: https://zsmith.shinyapps.io/BAP_Shiny/
+when: 1476119904.53766
+asMultiple: FALSE
+asStatic: FALSE
