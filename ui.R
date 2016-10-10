@@ -8,9 +8,12 @@
 #
 
 library(shiny)
+library(shinythemes)
+
 
 
 fluidPage(
+  theme = shinytheme("spacelab"),
   titlePanel("NYSDEC: BAP"),
   sidebarLayout(
     sidebarPanel(
@@ -19,18 +22,25 @@ fluidPage(
                          'text/comma-separated-values,text/plain', 
                          '.csv')),
       
-      tags$hr(),
+     
+      a("Example Format", target = "_blank", href = "Data_Export_Format.pdf"),
+      
+      
       checkboxInput('header', 'Header', TRUE),
       radioButtons('sep', 'Separator',
                    c(Comma=',',
                      Semicolon=';',
                      Tab='\t'),
                    ','),
+      tags$hr(),
+      
       selectInput("method", "Method",
                   c("Riffle", "Ponar", "Jab",
                     "MP Navigable Waters",
                     "MP Non-Navigable Waters")
       ),
+      
+      tags$hr(),
       
       textInput("caption", "File Name", ""),
       
