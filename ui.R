@@ -23,7 +23,7 @@ fluidPage(
                          '.csv')),
       
      
-      a("Example Format", target = "_blank", href = "Data_Export_Format2.pdf"),
+      a("Example Format", target = "_blank", href = "Mosher_Request_1_6_17.pdf"),
       
       
       checkboxInput('header', 'Header', TRUE),
