@@ -8,6 +8,7 @@
 #
 
 library(shiny)
+#devtools::install_github(repo = "zsmith27/BAP")
 library(BAP)
 
 function(input, output) {
