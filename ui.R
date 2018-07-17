@@ -17,10 +17,15 @@ fluidPage(
   titlePanel("NYSDEC: BAP"),
   sidebarLayout(
     sidebarPanel(
+      radioButtons("radio_data", "Data:",
+                   c("Load CSV" = "csv",
+                     "Example Data" = "example"),
+                   inline = TRUE),
+      conditionalPanel(condition = 'input.radio_data == "csv"',
       fileInput('file1', 'Choose CSV File',
                 accept=c('text/csv', 
                          'text/comma-separated-values,text/plain', 
-                         '.csv')),
+                         '.csv'))),
       
      
       a("Example Format", target = "_blank", href = "Mosher_Request_1_6_17.pdf"),

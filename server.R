@@ -8,17 +8,33 @@
 #
 
 library(shiny)
-#devtools::install_github(repo = "zsmith27/BAP")
+#devtools::install_github(repo = "zsmith27/BAP", force = TRUE)
 library(BAP)
 
 function(input, output) {
   
   my_data <- reactive({
-    inFile <- input$file1
-    if (is.null(inFile)) return(NULL)
-    data <- read.csv(inFile$datapath, header=input$header, sep=input$sep, 
-                     quote=input$quote)
-    data <- BAP::data_prep(data)
+    validate(
+      need(input$radio_data, "Radio Button Error.")
+    )
+    if (input$radio_data == "csv") {
+      inFile <- input$file1
+      if (is.null(inFile)) return(NULL)
+      data <- read.csv(
+          inFile$datapath,
+          header = input$header,
+          sep = input$sep,
+          quote = input$quote
+        )
+      data <- BAP::data_prep(data)
+    }
+    if (input$radio_data == "example") {
+      data <- example.df
+    }
+    
+    validate(
+      need(nrow(data) > 0, "No data available.")
+    )
     data
   })
   
@@ -35,10 +51,9 @@ function(input, output) {
   
   
   output$contents <- renderTable({
-    inFile <- input$file1
-    
-    if (is.null(inFile))
-      return(NULL)
+    if (input$radio_data == "csv") {
+      if (is.null(input$file1)) return(NULL)
+    }
     
     input.react()
     
